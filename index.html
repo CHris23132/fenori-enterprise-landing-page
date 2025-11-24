@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fenori – AI Compliance, Legal & HR Workspace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #fefefe;
+      --bg-accent: #f5f5f3;
+      --bg-tint: #fefce9;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-subtle: #e5e7eb;
+      --radius-xl: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: rgba(254, 254, 254, 0.92);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      object-fit: contain;
+      border: 1px solid rgba(17, 24, 39, 0.08);
+    }
+
+    .brand-name {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1.5px;
+      border-radius: 999px;
+      background: var(--text-main);
+      transition: width 0.18s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(17, 24, 39, 0.1);
+      cursor: pointer;
+      background: var(--bg-tint);
+      transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: 0 14px 38px rgba(15, 23, 42, 0.18);
+    }
+
+    .btn span {
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.22);
+      background: #fffdf3;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(245, 245, 243, 0.9);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 56px 0 40px;
+      background: radial-gradient(circle at top left, var(--bg-tint), var(--bg-accent));
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 3.3vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0 0 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #111827, #4b5563);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 36rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-flag span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #16a34a;
+      box-shadow: 0 0 0 6px rgba(22, 163, 74, 0.16);
+    }
+
+    .hero-panel {
+      background: rgba(254, 254, 254, 0.98);
+      border-radius: 32px;
+      padding: 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed rgba(209, 213, 219, 0.9);
+    }
+
+    .hero-panel-title {
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .hero-panel-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .hero-main-shot {
+      margin-top: 8px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      background: #fff;
+    }
+
+    .hero-main-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .hero-mini-card {
+      background: var(--bg-accent);
+      border-radius: 18px;
+      padding: 10px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .hero-mini-card img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      background: #fff;
+    }
+
+    .hero-mini-card h4 {
+      font-size: 0.8rem;
+      margin: 2px 0 0;
+    }
+
+    .hero-mini-card span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Logo strip */
+
+    .logo-strip {
+      padding: 22px 0 32px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-main);
+    }
+
+    .logo-strip-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .logo-strip-label {
+      font-weight: 500;
+    }
+
+    .logo-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .logo-pill {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-accent);
+      font-size: 0.76rem;
+    }
+
+    /* Sections */
+
+    .section {
+      padding: 40px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      margin: 0;
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 360px;
+    }
+
+    /* Features */
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(229, 231, 235, 0.96);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-tag {
+      font-size: 0.7rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--bg-tint);
+      align-self: flex-start;
+      border: 1px solid rgba(17, 24, 39, 0.08);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #4b5563;
+    }
+
+    .feature h3 {
+      font-size: 0.96rem;
+      margin: 2px 0 0;
+    }
+
+    .feature p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .feature-meta {
+      margin-top: auto;
+      padding-top: 6px;
+      font-size: 0.76rem;
+      color: #4b5563;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-meta span {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #9ca3af;
+    }
+
+    /* Video section */
+
+    .video-section {
+      background: var(--bg-accent);
+    }
+
+    .video-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 22px 58px rgba(15, 23, 42, 0.18);
+    }
+
+    .video-inner-aspect {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 */
+    }
+
+    .video-inner-aspect iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-caption {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Teams section */
+
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .team-card {
+      background: var(--bg-accent);
+      border-radius: var(--radius-xl);
+      padding: 14px 14px 12px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .team-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .team-body {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Vision */
+
+    .vision {
+      background: var(--bg-tint);
+    }
+
+    .vision-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .vision-quote {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: #4b5563;
+    }
+
+    .vision-meta {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+
+    .vision-meta strong {
+      display: block;
+      font-size: 0.9rem;
+      color: #111827;
+    }
+
+    .vision-card {
+      background: #fefefe;
+      border-radius: 22px;
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.82rem;
+      color: #4b5563;
+      box-shadow: 0 16px 46px rgba(15, 23, 42, 0.12);
+    }
+
+    /* Trust / compliance */
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .trust-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 12px 12px 10px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.8rem;
+      color: #4b5563;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .trust-card h3 {
+      margin: 0;
+      font-size: 0.82rem;
+    }
+
+    .trust-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* CTA */
+
+    .cta-shell {
+      background: #fefefe;
+    }
+
+    .cta-box {
+      background: #ffffff;
+      border-radius: 26px;
+      padding: 20px 20px 18px;
+      border: 1px solid rgba(209, 213, 219, 0.95);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.16);
+    }
+
+    .cta-box h3 {
+      margin: 0 0 6px;
+      font-size: 1.02rem;
+      letter-spacing: -0.03em;
+    }
+
+    .cta-box p {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+
+    footer {
+      padding: 26px 0 32px;
+      border-top: 1px solid var(--border-subtle);
+      background: #fefefe;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner a {
+      font-weight: 500;
+      color: #111827;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 960px) {
+      .hero-inner,
+      .video-layout,
+      .vision-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .feature-grid,
+      .teams-grid,
+      .trust-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner {
+        gap: 26px;
+      }
+
+      .section {
+        padding: 30px 0;
+      }
+
+      .feature-grid,
+      .teams-grid,
+      .trust-strip {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .logo-strip-inner {
+        align-items: flex-start;
+      }
+
+      .cta-box {
+        padding: 18px 16px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header>
+      <div class="shell nav">
+        <div class="brand">
+          <img src="images/fio-logo.png" alt="Fenori Logo" class="brand-mark" />
+          <div>
+            <div class="brand-name">Fenori</div>
+            <div class="brand-sub">AI Compliance · Legal · HR Workspace</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#features">Product</a>
+          <a href="#video">Overview video</a>
+          <a href="#teams">Teams</a>
+          <a href="#trust">Security</a>
+          <button class="btn" onclick="location.href='#contact'">
+            Book a demo <span>↗</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="shell hero-inner">
+          <div>
+            <div class="eyebrow">Enterprise AI assistant for compliance, legal & HR</div>
+            <h1>
+              Compliance, HR & legal work,
+              <span>without the grind.</span>
+            </h1>
+            <p class="hero-lead">
+              Fenori connects to your CRM, monitoring tools, documents and call recordings to act as a
+              collaborative AI workspace — generating reports, memos, contracts and emails in minutes,
+              always grounded in your own data.
+            </p>
+
+            <div class="hero-ctas">
+              <button class="btn" onclick="location.href='#contact'">
+                Book a live demo
+              </button>
+              <button class="btn btn-secondary" onclick="location.href='#video'">
+                Watch 2-min overview
+              </button>
+            </div>
+
+            <div class="hero-meta">
+              <div class="hero-meta-flag">
+                <span></span>
+                Built for regulated, multi-team enterprises
+              </div>
+              <div>
+                Legal, HR, Compliance & Operations working in one shared AI workspace.
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Fenori in action">
+            <div class="hero-panel-header">
+              <div>
+                <div class="hero-panel-title">Board-ready incident summary</div>
+                <div class="hero-panel-sub">Generated from CRM tickets & monitoring alerts</div>
+              </div>
+            </div>
+
+            <div class="hero-main-shot">
+              <img src="images/Report-Generation-Fenori.png" alt="Fenori report generation interface" />
+            </div>
+
+            <div class="hero-mini-grid">
+              <div class="hero-mini-card">
+                <img src="images/CRM-integration-Fenori.png" alt="CRM integration" />
+                <h4>Live CRM & monitoring integration</h4>
+                <span>Compile incidents across tools into a single, audit-ready record.</span>
+              </div>
+              <div class="hero-mini-card">
+                <img src="images/Alert-System-Fenori.png" alt="Alert system" />
+                <h4>Smart alerts & trend detection</h4>
+                <span>Spot emerging risk patterns before they turn into headlines.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Logo strip -->
+      <section class="logo-strip">
+        <div class="shell logo-strip-inner">
+          <div class="logo-strip-label">Designed for teams that handle sensitive work every day.</div>
+          <div class="logo-pill-row">
+            <div class="logo-pill">In-house Legal</div>
+            <div class="logo-pill">HR & People Ops</div>
+            <div class="logo-pill">Risk & Compliance</div>
+            <div class="logo-pill">Security & IT</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Smarter tools, better outcomes</div>
+              <h2 class="section-title">
+                Fenori turns your tickets, files and calls into finished work product.
+              </h2>
+            </div>
+            <p class="section-subtitle">
+              An AI workspace built for compliance, legal and HR — drafting, summarizing and analyzing across
+              every source of truth you already rely on.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <!-- 1 -->
+            <article class="feature">
+              <span class="feature-tag">CRM & Monitoring</span>
+              <h3>Generate incident & compliance reports in minutes.</h3>
+              <p>
+                Sync Fenori with your CRM and monitoring systems to automatically pull tickets and alerts into
+                structured, regulator-ready reports for leadership and auditors.
+              </p>
+              <div class="feature-meta">
+                <span></span>
+                From raw tickets to polished analysis in one prompt.
+              </div>
+            </article>
+
+            <!-- 2 -->
+            <article class="feature">
+              <span class="feature-tag">Drafting Engine</span>
+              <h3>Memos, contracts & emails from trusted precedents.</h3>
+              <p>
+                Ask Fenori to draft reports, memos, contracts or email responses, combining industry-grade
+                templates with your internal playbooks and policies — always with humans in the loop.
+              </p>
+              <div class="feature-meta">
+                <span></span>
+                High-quality first drafts aligned to your tone and risk profile.
+              </div>
+            </article>
+
+            <!-- 3 -->
+            <article class="feature">
+              <span class="feature-tag">Call Intelligence</span>
+              <h3>Transcribe calls and surface the details that matter.</h3>
+              <p>
+                Upload audio files to get clean call transcriptions. Then ask Fenori to find dates, promises,
+                risk signals or grievances and instantly generate reports, summaries and follow-up actions.
+              </p>
+              <div class="feature-meta">
+                <span></span>
+                Ideal for investigations, HR cases and vendor negotiations.
+              </div>
+            </article>
+
+            <!-- 4 -->
+            <article class="feature">
+              <span class="feature-tag">Photographic Memory</span>
+              <h3>Upload your document universe & let Fenori remember it.</h3>
+              <p>
+                Give Fenori policies, contracts, handbooks and historical matters. It builds a photographic memory
+                over your content, fetching clauses and data points on demand and compiling them into fresh reports.
+              </p>
+              <div class="feature-meta">
+                <span></span>
+                “What did we agree with Vendor X on data retention?” — answered instantly.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video / Overview -->
+      <section id="video" class="section video-section">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Product tour</div>
+              <h2 class="section-title">See Fenori in action.</h2>
+            </div>
+            <p class="section-subtitle">
+              A quick walkthrough of how Fenori brings together reports, call transcriptions and document memory
+              into one, Legora-style collaborative workspace for compliance, legal and HR.
+            </p>
+          </div>
+
+          <div class="video-layout">
+            <div>
+              <div class="video-wrapper">
+                <div class="video-inner-aspect">
+                  <!-- Google Drive embedded preview -->
+                  <iframe
+                    src="https://drive.google.com/file/d/1tOTXrq-j4iY0oVQQPoBMOV4GCWfktW_m/preview"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                    title="Fenori Product Overview"
+                  ></iframe>
+                </div>
+              </div>
+              <p class="video-caption">
+                Embedded directly from Google Drive so you can share and update your Fenori overview video without changing the site.
+              </p>
+            </div>
+
+            <div>
+              <h3 style="font-size:1.02rem;letter-spacing:-0.02em;margin:0 0 10px;">
+                From raw signals to signed-off deliverables.
+              </h3>
+              <p style="font-size:0.9rem;color:var(--text-muted);margin:0 0 10px;">
+                In this short video, you’ll see how Fenori:
+              </p>
+              <ul style="font-size:0.86rem;color:var(--text-muted);padding-left:18px;margin:0 0 14px;">
+                <li>Pulls CRM tickets and monitoring alerts into a single workspace.</li>
+                <li>Uses its photographic memory of your documents to ground every answer.</li>
+                <li>Transcribes calls and extracts key facts, risks and next steps.</li>
+                <li>Drafts reports, memos, contracts and emails for your team to review and approve.</li>
+              </ul>
+              <p style="font-size:0.86rem;color:var(--text-muted);margin:0;">
+                Pair the video with a live demo on your own data to see exactly where Fenori can remove busywork
+                across your legal, HR and compliance workflows.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Teams / Solutions -->
+      <section id="teams" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Fenori meets teams where they are</div>
+              <h2 class="section-title">
+                One workspace, tailored to every function that touches risk.
+              </h2>
+            </div>
+            <p class="section-subtitle">
+              Inspired by the Legora approach, Fenori adapts to your existing workflows instead of asking
+              your teams to change how they work.
+            </p>
+          </div>
+
+          <div class="teams-grid">
+            <div class="team-card">
+              <div class="team-title">Legal</div>
+              <div class="team-body">
+                Accelerate matter reviews, generate chronologies and draft contracts or variation clauses based
+                on prior agreements and playbooks — with full citation back to the source documents.
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-title">HR & People</div>
+              <div class="team-body">
+                Summarize grievance cases, transcribe sensitive conversations, and generate investigation reports
+                aligned to policy and local regulations, ready for HRBP sign-off.
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-title">Risk & Compliance</div>
+              <div class="team-body">
+                Turn monitoring alerts and CRM incidents into coherent risk narratives, complete with controls,
+                root-cause analysis and remediation plans for boards and regulators.
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-title">Operations & IT</div>
+              <div class="team-body">
+                Use Fenori as a central knowledge layer over SOPs, runbooks and past incidents, making it easy for
+                teams to ask “how did we solve this last time?” and get instant, documented answers.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vision -->
+      <section class="section vision">
+        <div class="shell vision-inner">
+          <div>
+            <div class="section-kicker">Our vision</div>
+            <h2 class="section-title">Humans in control, AI doing the heavy lifting.</h2>
+            <p class="vision-quote">
+              Legal, HR and compliance teams bring nuance, empathy and judgment. Fenori brings speed,
+              recall and structure. Together, they redefine how organizations understand risk, support
+              their people and meet their obligations.
+            </p>
+            <div class="vision-meta">
+              <strong>The result?</strong>
+              Less time chasing documents, more time advising the business, closing matters and supporting employees.
+            </div>
+          </div>
+
+          <div class="vision-card">
+            Fenori is more than a chatbot. It’s a shared AI workspace that:
+            <ul style="margin:10px 0 0;padding-left:18px;">
+              <li>Grounds every answer in your tickets, calls and documents.</li>
+              <li>Links every report back to the underlying evidence for easy audit.</li>
+              <li>Respects existing access controls and data boundaries.</li>
+              <li>Keeps humans firmly in the loop for every decision and communication.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust & compliance -->
+      <section id="trust" class="section">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Certified & compliant</div>
+              <h2 class="section-title">Built for organizations where every word matters.</h2>
+            </div>
+            <p class="section-subtitle">
+              Fenori is engineered with enterprise-grade security and governance, so legal, HR and compliance
+              leaders can adopt AI with confidence.
+            </p>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-card">
+              <div class="trust-label">AI governance</div>
+              <h3>Responsible AI by design</h3>
+              <p>
+                Human-in-the-loop workflows, clear data-handling principles and policies that make it easy to
+                explain how AI is used across your organization.
+              </p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-label">Security</div>
+              <h3>Enterprise-grade protections</h3>
+              <p>
+                Strong encryption in transit and at rest, rigorous access controls and detailed audit logs for
+                every query, output and document access.
+              </p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-label">Privacy</div>
+              <h3>Data residency & retention</h3>
+              <p>
+                Configurable data-retention policies and region-aware deployment options to meet local privacy
+                and regulatory requirements.
+              </p>
+            </div>
+            <div class="trust-card">
+              <div class="trust-label">Audit trail</div>
+              <h3>From answer to evidence</h3>
+              <p>
+                Every report, memo or email Fenori drafts links back to the exact tickets, transcripts and
+                documents it relied on — ready for internal or external review.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="contact" class="section cta-shell">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Get started</div>
+              <h2 class="section-title">See what Fenori can do on your own data.</h2>
+            </div>
+            <p class="section-subtitle">
+              Share a sample of your tickets, policies or call recordings and we’ll walk you through a tailored
+              Fenori workspace for your team.
+            </p>
+          </div>
+
+          <div class="cta-box">
+            <div style="max-width:430px;">
+              <h3>Ready to give your teams a Legora-style workspace, tuned for compliance & HR?</h3>
+              <p>
+                Email us a short description of your current tools and challenges. We’ll respond with a customized
+                demo plan and a clear view of where Fenori can immediately help.
+              </p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <button class="btn" onclick="location.href='mailto:partners@fenori.io?subject=Fenori%20demo%20request'">
+                Email partners@fenori.io
+              </button>
+              <span style="font-size:0.78rem;color:var(--text-muted);">
+                Or add <strong>partners@fenori.io</strong> to your next compliance or HR steering meeting invite.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="shell footer-inner">
+        <div>© <span id="year"></span> Fenori. All rights reserved.</div>
+        <div>
+          <a href="#features">Product</a> ·
+          <a href="#teams">Solutions</a> ·
+          <a href="#trust">Security</a> ·
+          <a href="mailto:partners@fenori.io">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
