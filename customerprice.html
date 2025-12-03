@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fenori Enterprise – Official Pricing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="images/fiq.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      color: #111827;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 48px;
+      border-radius: 20px;
+      box-shadow: 0 25px 80px rgba(15, 23, 42, 0.12), 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    @media (min-width: 768px) {
+      .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary.copied {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title svg {
+      color: #3b82f6;
+    }
+
+    /* Main Pricing Table */
+    .pricing-section {
+      margin-bottom: 48px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      background: #f9fafb;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    thead th {
+      padding: 16px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    thead th:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    .tier-base { background: #f3f4f6; }
+    .tier-plus { background: #eff6ff; }
+    .tier-platinum { background: #faf5ff; }
+    .tier-diamond { background: #eef2ff; color: #4338ca !important; }
+
+    tbody tr {
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    tbody td {
+      padding: 16px;
+      text-align: center;
+      color: #374151;
+    }
+
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: #374151;
+      border-right: 1px solid #f3f4f6;
+    }
+
+    .transcription-cell {
+      font-size: 0.875rem;
+    }
+
+    .transcription-type {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .transcription-limit {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .price-row {
+      border-top: 2px solid #e5e7eb !important;
+      background: #f9fafb;
+    }
+
+    .price-row td:first-child {
+      font-weight: 700;
+      color: #111827;
+      background: #f9fafb;
+    }
+
+    .price-cell {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* Extra Data Grid */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .data-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .data-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .data-card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid;
+    }
+
+    .data-card-header.blue {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .data-card-header.green {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .data-card-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .data-card-header.blue h3 {
+      color: #1e40af;
+    }
+
+    .data-card-header.green h3 {
+      color: #166534;
+    }
+
+    .data-card-header p {
+      font-size: 0.75rem;
+      margin-top: 4px;
+      color: #15803d;
+    }
+
+    .data-card table {
+      font-size: 0.875rem;
+    }
+
+    .data-card thead {
+      background: #f9fafb;
+    }
+
+    .data-card thead th {
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    .data-card tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .data-card tbody td:first-child {
+      padding-left: 20px;
+      border-right: none;
+    }
+
+    .text-right {
+      text-align: right !important;
+    }
+
+    .text-left {
+      text-align: left !important;
+    }
+
+    .text-semibold {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    /* Hidden table for clipboard */
+    .hidden-clipboard {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -50;
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
+      height: 0;
+      width: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px 16px;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      table {
+        font-size: 0.8rem;
+      }
+
+      thead th, tbody td {
+        padding: 12px 8px;
+      }
+
+      .price-cell {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h1>Fenori Enterprise</h1>
+        <p>Official Price List</p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="copyBtn" onclick="handleCopy()">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <span id="copyText">Copy for Google Sheets</span>
+        </button>
+        <button class="btn btn-secondary" onclick="handleDownload()">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          CSV (Download)
+        </button>
+      </div>
+    </div>
+
+    <!-- 1. Plan Overview -->
+    <div class="pricing-section">
+      <h2 class="section-title">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Plan Overview
+      </h2>
+      
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Features</th>
+              <th class="tier-base">Base</th>
+              <th class="tier-plus">Plus</th>
+              <th class="tier-platinum">Platinum</th>
+              <th class="tier-diamond">Diamond</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RAG Knowledge Storage</td>
+              <td class="tier-base">5,000 Docs</td>
+              <td class="tier-plus">10,000 Docs</td>
+              <td class="tier-platinum">50,000 Docs</td>
+              <td class="tier-diamond">150,000 Docs</td>
+            </tr>
+            <tr>
+              <td>Transcription</td>
+              <td class="tier-base transcription-cell">
+                <div class="transcription-type">Standard (No History)</div>
+                <div class="transcription-limit">50 Transcriptions</div>
+              </td>
+              <td class="tier-plus transcription-cell">
+                <div class="transcription-type">Standard (Saved History)</div>
+                <div class="transcription-limit">300 Transcriptions</div>
+              </td>
+              <td class="tier-platinum transcription-cell">
+                <div class="transcription-type">Advanced RAG + Saved</div>
+                <div class="transcription-limit">1,000 Transcriptions</div>
+              </td>
+              <td class="tier-diamond transcription-cell">
+                <div class="transcription-type">Advanced RAG + Saved</div>
+                <div class="transcription-limit">Custom Limit</div>
+              </td>
+            </tr>
+            <tr>
+              <td>Custom APIs</td>
+              <td class="tier-base">0</td>
+              <td class="tier-plus">1</td>
+              <td class="tier-platinum">5</td>
+              <td class="tier-diamond">10</td>
+            </tr>
+            <tr class="price-row">
+              <td>Price Per User</td>
+              <td class="tier-base price-cell">$150</td>
+              <td class="tier-plus price-cell">$300</td>
+              <td class="tier-platinum price-cell">$650</td>
+              <td class="tier-diamond price-cell">$900</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. Extra Data Tables -->
+    <div class="data-grid">
+      <!-- RAG Storage -->
+      <div class="data-card">
+        <div class="data-card-header blue">
+          <h3>
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+            </svg>
+            Extra Storage Add-ons
+          </h3>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="text-left">Docs</th>
+              <th class="text-left">Size</th>
+              <th class="text-right">Annual Price</th>
+            </tr>
+          </thead>
+          <tbody id="ragStorageTable"></tbody>
+        </table>
+      </div>
+
+      <!-- Transcription -->
+      <div class="data-card">
+        <div class="data-card-header green">
+          <h3>
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Volume Transcription
+          </h3>
+          <p>Per call pricing</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="text-left">Calls</th>
+              <th class="text-right">Total Price</th>
+            </tr>
+          </thead>
+          <tbody id="transcriptionTable"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden table for clipboard -->
+  <div class="hidden-clipboard">
+    <table id="hiddenTable" border="1" style="border-collapse: collapse; font-family: Arial, sans-serif;"></table>
+  </div>
+
+  <script>
+    // --- DATA ---
+    const tiers = [
+      { name: "Base", docs: "5,000", transcription: "Standard (No History)", transcriptionLimit: "50 Transcriptions", ragIntegration: false, apis: 0, price: 150, color: "#f3f4f6" },
+      { name: "Plus", docs: "10,000", transcription: "Standard (Saved History)", transcriptionLimit: "300 Transcriptions", ragIntegration: false, apis: 1, price: 300, color: "#eff6ff" },
+      { name: "Platinum", docs: "50,000", transcription: "Advanced RAG + Saved", transcriptionLimit: "1,000 Transcriptions", ragIntegration: true, apis: 5, price: 650, color: "#faf5ff" },
+      { name: "Diamond", docs: "150,000", transcription: "Advanced RAG + Saved", transcriptionLimit: "Custom Limit", ragIntegration: true, apis: 10, price: 900, color: "#eef2ff" }
+    ];
+
+    const ragStorageData = [
+      { docs: "1,000", gb: "1 GB", price: "$72" },
+      { docs: "5,000", gb: "5 GB", price: "$360" },
+      { docs: "10,000", gb: "10 GB", price: "$720" },
+      { docs: "25,000", gb: "25 GB", price: "$1,800" },
+      { docs: "50,000", gb: "50 GB", price: "$3,600" },
+      { docs: "100,000", gb: "100 GB", price: "$7,200" },
+      { docs: "250,000", gb: "250 GB", price: "$18,000" },
+      { docs: "500,000", gb: "500 GB", price: "$36,000" },
+    ];
+
+    const transcriptionData = [
+      { calls: "1", price: "$0.38" },
+      { calls: "1,000", price: "$380" },
+      { calls: "10,000", price: "$3,800" },
+      { calls: "50,000", price: "$19,000" },
+      { calls: "100,000", price: "$38,000" },
+      { calls: "250,000", price: "$95,000" },
+      { calls: "500,000", price: "$190,000" },
+    ];
+
+    // --- FUNCTIONS ---
+    // Populate RAG Storage Table
+    function populateRagTable() {
+      const tbody = document.getElementById('ragStorageTable');
+      ragStorageData.forEach(row => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${row.docs}</td>
+            <td style="color: #9ca3af;">${row.gb}</td>
+            <td class="text-right text-semibold">${row.price}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Populate Transcription Table
+    function populateTranscriptionTable() {
+      const tbody = document.getElementById('transcriptionTable');
+      transcriptionData.forEach(row => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${row.calls}</td>
+            <td class="text-right text-semibold">${row.price}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Build Hidden Table for Clipboard
+    function buildHiddenTable() {
+      const table = document.getElementById('hiddenTable');
+      let html = '';
+
+      // Section 1: Main Tiers
+      html += `
+        <thead>
+          <tr>
+            <th style="background-color: #111827; color: white; padding: 10px; font-weight: bold; border: 1px solid #ddd; font-size: 16px;">FEATURE</th>
+            ${tiers.map(t => `<th style="background-color: ${t.color}; padding: 10px; font-weight: bold; text-align: center; border: 1px solid #ddd; font-size: 16px; color: #000;">${t.name.toUpperCase()}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Price Per User</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd; font-weight: bold;">$${t.price}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">RAG Knowledge Storage</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.docs} Docs</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Deep AI Source Search</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">Included</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Report/Memo Generation</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">Included</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Transcription System</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.transcription}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Transcription Volume</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.transcriptionLimit}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Custom APIs</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.apis}</td>`).join('')}
+          </tr>
+      `;
+
+      // Spacer
+      html += `<tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>`;
+
+      // Section 2: RAG Storage
+      html += `
+        <tr>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">EXTRA STORAGE ADD-ONS</td>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">GB Size</td>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">Annual Price</td>
+          <td></td>
+          <td></td>
+        </tr>
+      `;
+      ragStorageData.forEach(row => {
+        html += `
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.docs} Docs</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.gb}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${row.price}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        `;
+      });
+
+      // Spacer
+      html += `<tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>`;
+
+      // Section 3: Transcription
+      html += `
+        <tr>
+          <td style="background-color: #166534; color: white; font-weight: bold; padding: 10px;">TRANSCRIPTION PACKAGES</td>
+          <td style="background-color: #166534; color: white; font-weight: bold; padding: 10px;">Total Price</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      `;
+      transcriptionData.forEach(row => {
+        html += `
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.calls} Calls</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.price}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody>';
+      table.innerHTML = html;
+    }
+
+    // Copy to clipboard
+    function handleCopy() {
+      const table = document.getElementById('hiddenTable');
+      const range = document.createRange();
+      const selection = window.getSelection();
+      range.selectNode(table);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      try {
+        document.execCommand('copy');
+        const btn = document.getElementById('copyBtn');
+        const text = document.getElementById('copyText');
+        btn.classList.add('copied');
+        text.textContent = 'Copied! Paste in Sheets (A1)';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          text.textContent = 'Copy for Google Sheets';
+        }, 3000);
+      } catch (err) {
+        alert('Error copying to clipboard');
+      }
+
+      selection.removeAllRanges();
+    }
+
+    // Download CSV
+    function handleDownload() {
+      let csvContent = "data:text/csv;charset=utf-8,";
+      csvContent += "FENORI ENTERPRISE - OFFICIAL PRICING\n";
+      csvContent += "Tier Name,Documents,Search,Generation,Transcription Type,Limit,RAG Integration,APIs,Price\n";
+
+      tiers.forEach(tier => {
+        const row = [
+          tier.name,
+          `"${tier.docs}"`,
+          "Yes",
+          "Yes",
+          tier.transcription,
+          tier.transcriptionLimit,
+          tier.ragIntegration ? "Yes" : "No",
+          tier.apis,
+          `$${tier.price}`
+        ];
+        csvContent += row.join(",") + "\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "Fenori_Client_Pricing.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      populateRagTable();
+      populateTranscriptionTable();
+      buildHiddenTable();
+    });
+  </script>
+</body>
+</html>
+
