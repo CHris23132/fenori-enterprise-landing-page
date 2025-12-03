@@ -334,17 +334,29 @@
       color: #6366f1;
     }
 
-    .margin-section p {
+    .margin-section > p {
       font-size: 0.875rem;
       color: #64748b;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .margin-section p strong {
       color: #1e293b;
     }
 
-    .margin-table-wrapper {
+    .margin-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 1024px) {
+      .margin-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .margin-card {
       background: #fff;
       border-radius: 10px;
       border: 1px solid #e2e8f0;
@@ -352,22 +364,59 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
+    .margin-card-header {
+      background: #f3f4f6;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .margin-card-header h3 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .margin-card-badge {
+      font-size: 0.75rem;
+      background: #fff;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
     .margin-table {
       font-size: 0.875rem;
+      width: 100%;
     }
 
     .margin-table thead {
-      background: #f1f5f9;
+      background: #f9fafb;
     }
 
     .margin-table thead th {
-      padding: 14px 12px;
-      font-size: 0.8rem;
-      color: #475569;
+      padding: 10px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    .margin-table thead th:first-child {
+      padding-left: 16px;
     }
 
     .margin-table tbody td {
-      padding: 10px 12px;
+      padding: 10px 8px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .margin-table tbody td:first-child {
+      padding-left: 16px;
+      border-right: none;
     }
 
     .text-red {
@@ -561,25 +610,12 @@
       <h2 class="section-title">
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
+        </svg>
         Margin Analysis Preview
       </h2>
-      <p>All 4 plans (Base, Plus, Platinum, Diamond) are included in the <strong>Copy</strong> function. Only Base is shown here for brevity.</p>
+      <p>Detailed margin breakdown for all pricing tiers (Showing first 8 user steps for brevity).</p>
       
-      <div class="margin-table-wrapper">
-        <table class="margin-table">
-          <thead>
-            <tr>
-              <th class="text-left">BASE PLAN Users</th>
-              <th class="text-right">Revenue</th>
-              <th class="text-right">Cost (Fixed)</th>
-              <th class="text-right">Profit</th>
-              <th class="text-right">Margin</th>
-            </tr>
-          </thead>
-          <tbody id="marginTable"></tbody>
-        </table>
-      </div>
+      <div class="margin-grid" id="marginGrid"></div>
     </div>
   </div>
 
@@ -665,20 +701,52 @@
       });
     }
 
-    // Populate Margin Table (Base only for preview)
-    function populateMarginTable() {
-      const tbody = document.getElementById('marginTable');
-      userCounts.slice(0, 8).forEach(users => {
-        const data = calculateMargin(users, 150, 25);
-        tbody.innerHTML += `
-          <tr>
-            <td>${data.users}</td>
-            <td class="text-right">$${data.revenue}</td>
-            <td class="text-right text-red">-$${data.cost}</td>
-            <td class="text-right">$${data.profit}</td>
-            <td class="text-right text-bold-green">${data.margin}</td>
-          </tr>
+    // Populate Margin Tables (All 4 tiers)
+    function populateMarginTables() {
+      const grid = document.getElementById('marginGrid');
+      
+      tiers.forEach(tier => {
+        // Create card for this tier
+        const card = document.createElement('div');
+        card.className = 'margin-card';
+        
+        // Build table rows
+        let tableRows = '';
+        userCounts.slice(0, 8).forEach(users => {
+          const data = calculateMargin(users, tier.price, tier.cost);
+          tableRows += `
+            <tr>
+              <td>${data.users}</td>
+              <td class="text-right">$${data.revenue}</td>
+              <td class="text-right text-red">-$${data.cost}</td>
+              <td class="text-right">$${data.profit}</td>
+              <td class="text-right text-bold-green">${data.margin}</td>
+            </tr>
+          `;
+        });
+        
+        card.innerHTML = `
+          <div class="margin-card-header">
+            <h3>${tier.name.toUpperCase()} PLAN</h3>
+            <span class="margin-card-badge">$${tier.price}/user • $${tier.cost} fixed cost</span>
+          </div>
+          <table class="margin-table">
+            <thead>
+              <tr>
+                <th class="text-left">Users</th>
+                <th class="text-right">Revenue</th>
+                <th class="text-right">Cost</th>
+                <th class="text-right">Profit</th>
+                <th class="text-right">Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tableRows}
+            </tbody>
+          </table>
         `;
+        
+        grid.appendChild(card);
       });
     }
 
@@ -865,7 +933,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       populateRagTable();
       populateTranscriptionTable();
-      populateMarginTable();
+      populateMarginTables();
       buildHiddenTable();
     });
   </script>
