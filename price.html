@@ -7,17 +7,19 @@
   <link rel="icon" type="image/png" href="images/fiq.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #fafafa;
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
       color: #111827;
       padding: 40px 20px;
     }
@@ -27,93 +29,145 @@
       margin: 0 auto;
       background: #ffffff;
       padding: 48px;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+      border-radius: 20px;
+      box-shadow: 0 25px 80px rgba(15, 23, 42, 0.12), 0 4px 6px rgba(0, 0, 0, 0.05);
     }
 
+    /* Header */
     .header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 20px;
       margin-bottom: 48px;
       padding-bottom: 32px;
       border-bottom: 2px solid #e5e7eb;
     }
 
+    @media (min-width: 768px) {
+      .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
     .header h1 {
       font-size: 2rem;
       font-weight: 700;
-      margin: 0 0 8px;
       color: #111827;
+      margin-bottom: 4px;
     }
 
     .header p {
-      margin: 0;
       color: #6b7280;
       font-size: 0.95rem;
     }
 
-    .download-btn {
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: #16a34a;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
       border: none;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+      transition: all 0.2s ease;
+      font-family: inherit;
     }
 
-    .download-btn:hover {
-      background: #15803d;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      color: white;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
     }
 
-    .section-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+    }
+
+    .btn-primary.copied {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-secondary:hover {
+      background: #e5e7eb;
     }
 
     .icon {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title svg {
+      color: #3b82f6;
+    }
+
+    /* Main Pricing Table */
+    .pricing-section {
+      margin-bottom: 48px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 48px;
     }
 
-    thead {
+    thead tr {
       background: #f9fafb;
       border-bottom: 2px solid #e5e7eb;
     }
 
     thead th {
       padding: 16px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    thead th:first-child {
       text-align: left;
       font-weight: 600;
       color: #6b7280;
-      font-size: 0.85rem;
     }
 
-    thead th:not(:first-child) {
-      text-align: center;
-      font-size: 1.1rem;
-      color: #111827;
-    }
+    .tier-base { background: #f3f4f6; }
+    .tier-plus { background: #eff6ff; }
+    .tier-platinum { background: #faf5ff; }
+    .tier-diamond { background: #eef2ff; color: #4338ca !important; }
 
     tbody tr {
       border-bottom: 1px solid #f3f4f6;
@@ -121,210 +175,243 @@
 
     tbody td {
       padding: 16px;
+      text-align: center;
       color: #374151;
     }
 
     tbody td:first-child {
+      text-align: left;
       font-weight: 500;
+      color: #374151;
+      border-right: 1px solid #f3f4f6;
     }
 
-    tbody td:not(:first-child) {
-      text-align: center;
+    .transcription-cell {
+      font-size: 0.875rem;
     }
 
-    .check-icon {
-      color: #16a34a;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-    .price-row {
-      background: #f9fafb;
-      border-top: 2px solid #e5e7eb;
-      font-weight: 700;
-    }
-
-    .price-row td {
-      font-size: 1.3rem;
+    .transcription-type {
+      font-weight: 600;
       color: #111827;
-      padding: 20px 16px;
     }
 
-    .diamond-col {
-      color: #6366f1 !important;
-    }
-
-    .logic-section {
-      background: #f8fafc;
-      padding: 32px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-    }
-
-    .logic-section h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #111827;
-      margin: 0 0 8px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logic-section p {
-      margin: 0 0 32px;
-      color: #64748b;
-      font-size: 0.88rem;
-    }
-
-    .logic-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .logic-table {
-      background: white;
-      padding: 24px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-      border: 1px solid #e5e7eb;
-    }
-
-    .logic-table h3 {
+    .transcription-limit {
       font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #9ca3af;
-      margin: 0 0 20px;
-    }
-
-    .logic-table table {
-      margin: 0;
-      font-size: 0.85rem;
-    }
-
-    .logic-table thead th {
-      background: transparent;
-      border: none;
-      padding: 8px;
       color: #6b7280;
-      font-size: 0.8rem;
-    }
-
-    .logic-table tbody td {
-      padding: 8px;
-      border-bottom: 1px solid #f3f4f6;
-    }
-
-    .highlight-row {
-      background: #ecfdf5 !important;
-      font-weight: 600;
-    }
-
-    .rules-section {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .rules-section h3 {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #9ca3af;
-      margin: 0 0 16px;
-    }
-
-    .rule-card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-      display: flex;
-      gap: 16px;
-    }
-
-    .rule-card strong {
-      display: block;
-      color: #111827;
-      font-size: 0.88rem;
-      margin-bottom: 8px;
-    }
-
-    .rule-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .rule-card li {
-      margin-bottom: 4px;
-    }
-
-    .rule-card .value {
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .tier-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 600;
       margin-top: 4px;
     }
 
-    .badge-purple {
-      background: #f3e8ff;
-      color: #7c3aed;
+    .price-row {
+      border-top: 2px solid #e5e7eb !important;
+      background: #f9fafb;
     }
 
-    @media (max-width: 960px) {
+    .price-row td:first-child {
+      font-weight: 700;
+      color: #111827;
+      background: #f9fafb;
+    }
+
+    .price-cell {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* Extra Data Grid */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 768px) {
+      .data-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .data-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .data-card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid;
+    }
+
+    .data-card-header.blue {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .data-card-header.green {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+
+    .data-card-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .data-card-header.blue h3 {
+      color: #1e40af;
+    }
+
+    .data-card-header.green h3 {
+      color: #166534;
+    }
+
+    .data-card-header p {
+      font-size: 0.75rem;
+      margin-top: 4px;
+      color: #15803d;
+    }
+
+    .data-card table {
+      font-size: 0.875rem;
+    }
+
+    .data-card thead {
+      background: #f9fafb;
+    }
+
+    .data-card thead th {
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6b7280;
+    }
+
+    .data-card tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .data-card tbody td:first-child {
+      padding-left: 20px;
+      border-right: none;
+    }
+
+    .text-right {
+      text-align: right !important;
+    }
+
+    .text-left {
+      text-align: left !important;
+    }
+
+    .text-muted {
+      color: #9ca3af;
+    }
+
+    .text-blue {
+      color: #2563eb;
+      font-weight: 600;
+    }
+
+    .text-green {
+      color: #16a34a;
+      font-weight: 600;
+    }
+
+    /* Margin Analysis */
+    .margin-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 32px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .margin-section .section-title svg {
+      color: #6366f1;
+    }
+
+    .margin-section p {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    .margin-section p strong {
+      color: #1e293b;
+    }
+
+    .margin-table-wrapper {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .margin-table {
+      font-size: 0.875rem;
+    }
+
+    .margin-table thead {
+      background: #f1f5f9;
+    }
+
+    .margin-table thead th {
+      padding: 14px 12px;
+      font-size: 0.8rem;
+      color: #475569;
+    }
+
+    .margin-table tbody td {
+      padding: 10px 12px;
+    }
+
+    .text-red {
+      color: #f87171;
+    }
+
+    .text-bold-green {
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    /* Hidden table for clipboard */
+    .hidden-clipboard {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -50;
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
+      height: 0;
+      width: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
       .container {
-        padding: 32px 24px;
+        padding: 24px 16px;
       }
 
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-      }
-
-      .logic-grid {
-        grid-template-columns: 1fr;
+      .header h1 {
+        font-size: 1.5rem;
       }
 
       table {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
       }
 
       thead th, tbody td {
         padding: 12px 8px;
       }
-    }
 
-    @media (max-width: 640px) {
-      body {
-        padding: 20px 10px;
-      }
-
-      .container {
-        padding: 24px 16px;
-      }
-
-      .section-title {
-        font-size: 1.1rem;
-      }
-
-      table {
-        font-size: 0.75rem;
+      .price-cell {
+        font-size: 1rem;
       }
     }
   </style>
@@ -335,215 +422,420 @@
     <div class="header">
       <div>
         <h1>Fenori Enterprise</h1>
-        <p>Pricing Structure & Component Logic</p>
+        <p>Master Pricing & Margin Analysis</p>
       </div>
-      <button class="download-btn" onclick="downloadCSV()">
+      <div class="btn-group">
+        <button class="btn btn-primary" id="copyBtn" onclick="handleCopy()">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+          <span id="copyText">Copy for Google Sheets</span>
+        </button>
+        <button class="btn btn-secondary" onclick="handleDownload()">
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
         </svg>
-        Download CSV for Sheets
+          CSV (Main Only)
       </button>
+      </div>
     </div>
 
-    <!-- Main Pricing Table -->
-    <div>
+    <!-- 1. Core Tier Pricing -->
+    <div class="pricing-section">
       <h2 class="section-title">
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        Feature & Price Overview
+        Core Tier Pricing
       </h2>
       
+      <div class="table-wrapper">
       <table>
         <thead>
           <tr>
             <th>Features</th>
-            <th>Base</th>
-            <th>Plus</th>
-            <th>Platinum</th>
-            <th class="diamond-col">Diamond</th>
+              <th class="tier-base">Base</th>
+              <th class="tier-plus">Plus</th>
+              <th class="tier-platinum">Platinum</th>
+              <th class="tier-diamond">Diamond</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>RAG Knowledge Storage</td>
-            <td>5,000 Docs</td>
-            <td>10,000 Docs</td>
-            <td>50,000 Docs</td>
-            <td>150,000 Docs</td>
+              <td class="tier-base">5,000 Docs</td>
+              <td class="tier-plus">10,000 Docs</td>
+              <td class="tier-platinum">50,000 Docs</td>
+              <td class="tier-diamond">150,000 Docs</td>
           </tr>
           <tr>
-            <td>Deep AI Source Search</td>
-            <td><span class="check-icon">✓</span></td>
-            <td><span class="check-icon">✓</span></td>
-            <td><span class="check-icon">✓</span></td>
-            <td><span class="check-icon">✓</span></td>
+              <td>Transcription Logic</td>
+              <td class="tier-base transcription-cell">
+                <div class="transcription-type">No RAG, Not Saved</div>
+                <div class="transcription-limit">50 Transcriptions</div>
+              </td>
+              <td class="tier-plus transcription-cell">
+                <div class="transcription-type">No RAG, Saved in History</div>
+                <div class="transcription-limit">300 Transcriptions</div>
+              </td>
+              <td class="tier-platinum transcription-cell">
+                <div class="transcription-type">RAG + History Saved</div>
+                <div class="transcription-limit">1,000 Transcriptions</div>
+              </td>
+              <td class="tier-diamond transcription-cell">
+                <div class="transcription-type">RAG + History Saved</div>
+                <div class="transcription-limit">Custom Limit</div>
+              </td>
           </tr>
           <tr>
-            <td>Content Generation</td>
-            <td><span class="check-icon">✓</span></td>
-            <td><span class="check-icon">✓</span></td>
-            <td><span class="check-icon">✓</span></td>
-            <td><span class="check-icon">✓</span></td>
-          </tr>
-          <tr>
-            <td>Transcription System</td>
-            <td>Standard</td>
-            <td>Standard</td>
-            <td>Advanced<br><span class="tier-badge badge-purple">+ Auto-RAG</span></td>
-            <td>Advanced<br><span class="tier-badge badge-purple">+ Auto-RAG</span></td>
-          </tr>
-          <tr>
-            <td>Custom API Integrations</td>
-            <td style="color:#9ca3af;">-</td>
-            <td><strong>1</strong></td>
-            <td><strong>5</strong></td>
-            <td><strong>10</strong></td>
+              <td>Custom APIs</td>
+              <td class="tier-base">0</td>
+              <td class="tier-plus">1</td>
+              <td class="tier-platinum">5</td>
+              <td class="tier-diamond">10</td>
           </tr>
           <tr class="price-row">
-            <td>Final Price (Per User)</td>
-            <td>$150</td>
-            <td>$300</td>
-            <td>$650</td>
-            <td class="diamond-col">$900</td>
+              <td>Price (Per User)</td>
+              <td class="tier-base price-cell">$150</td>
+              <td class="tier-plus price-cell">$300</td>
+              <td class="tier-platinum price-cell">$650</td>
+              <td class="tier-diamond price-cell">$900</td>
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
 
-    <!-- Logic Breakdown -->
-    <div class="logic-section">
-      <h2>
+    <!-- 2. Extra Data Tables -->
+    <div class="data-grid">
+      <!-- RAG Storage -->
+      <div class="data-card">
+        <div class="data-card-header blue">
+          <h3>
         <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
         </svg>
-        Pricing Logic Breakdown
-      </h2>
-      <p>How the storage, API, and ingestion costs stack to create the final price.</p>
-
-      <div class="logic-grid">
-        <!-- Component Math Table -->
-        <div class="logic-table">
-          <h3>Cost Stack</h3>
+            Extra RAG Storage Pricing
+          </h3>
+        </div>
           <table>
             <thead>
               <tr>
-                <th style="text-align:left;">Component</th>
-                <th style="text-align:right;">Base</th>
-                <th style="text-align:right;">Plus</th>
-                <th style="text-align:right;">Platinum</th>
-                <th style="text-align:right;">Diamond</th>
+              <th class="text-left">Docs</th>
+              <th class="text-left">Size</th>
+              <th class="text-right">Cost</th>
+              <th class="text-right">Client Price</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Base Platform</td>
-                <td style="text-align:right;">150</td>
-                <td style="text-align:right;">150</td>
-                <td style="text-align:right;">150</td>
-                <td style="text-align:right;">150</td>
-              </tr>
-              <tr>
-                <td>Storage Surcharge</td>
-                <td style="text-align:right;">0</td>
-                <td style="text-align:right;">50</td>
-                <td style="text-align:right;">150</td>
-                <td style="text-align:right;">300</td>
-              </tr>
-              <tr>
-                <td>API Surcharge</td>
-                <td style="text-align:right;">0</td>
-                <td style="text-align:right;">50</td>
-                <td style="text-align:right;">250</td>
-                <td style="text-align:right;">450</td>
-              </tr>
-              <tr>
-                <td>Ingestion/RAG</td>
-                <td style="text-align:right;">0</td>
-                <td style="text-align:right;">0</td>
-                <td style="text-align:right;">100</td>
-                <td style="text-align:right;">100</td>
-              </tr>
-              <tr>
-                <td>Calculated Total</td>
-                <td style="text-align:right;">150</td>
-                <td style="text-align:right;">250</td>
-                <td style="text-align:right;">650</td>
-                <td style="text-align:right;">1000</td>
-              </tr>
-              <tr class="highlight-row">
-                <td>Final List Price</td>
-                <td style="text-align:right;">150</td>
-                <td style="text-align:right;">300</td>
-                <td style="text-align:right;">650</td>
-                <td style="text-align:right;">900</td>
-              </tr>
-            </tbody>
+          <tbody id="ragStorageTable"></tbody>
           </table>
         </div>
 
-        <!-- Rules Reference -->
-        <div class="rules-section">
-          <h3>Logic Rules</h3>
-          
-          <div class="rule-card">
-            <svg class="icon" style="color:#3b82f6;margin-top:2px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+      <!-- Transcription -->
+      <div class="data-card">
+        <div class="data-card-header green">
+          <h3>
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <div>
-              <strong>Storage Scaling</strong>
-              <ul>
-                <li>Small (+10k docs): <span class="value">+$50</span></li>
-                <li>Medium (+50k docs): <span class="value">+$150</span></li>
-                <li>Large (+150k docs): <span class="value">+$300</span></li>
-              </ul>
+            Transcription (Per Call)
+          </h3>
+          <p>20% Margin • $0.38 per call</p>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th class="text-left">Calls</th>
+              <th class="text-right">Cost</th>
+              <th class="text-right">Price</th>
+              <th class="text-right">Profit</th>
+            </tr>
+          </thead>
+          <tbody id="transcriptionTable"></tbody>
+        </table>
             </div>
           </div>
 
-          <div class="rule-card">
-            <svg class="icon" style="color:#a855f7;margin-top:2px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+    <!-- 3. Margin Analysis -->
+    <div class="margin-section">
+      <h2 class="section-title">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
-            <div>
-              <strong>API Scaling</strong>
-              <ul>
-                <li>1 API: <span class="value">+$50</span></li>
-                <li>5 APIs: <span class="value">+$250</span></li>
-                <li>10 APIs: <span class="value">+$450</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        Margin Analysis Preview
+      </h2>
+      <p>All 4 plans (Base, Plus, Platinum, Diamond) are included in the <strong>Copy</strong> function. Only Base is shown here for brevity.</p>
+      
+      <div class="margin-table-wrapper">
+        <table class="margin-table">
+          <thead>
+            <tr>
+              <th class="text-left">BASE PLAN Users</th>
+              <th class="text-right">Revenue</th>
+              <th class="text-right">Cost (Fixed)</th>
+              <th class="text-right">Profit</th>
+              <th class="text-right">Margin</th>
+            </tr>
+          </thead>
+          <tbody id="marginTable"></tbody>
+        </table>
       </div>
     </div>
   </div>
 
+  <!-- Hidden table for clipboard -->
+  <div class="hidden-clipboard">
+    <table id="hiddenTable" border="1" style="border-collapse: collapse; font-family: Arial, sans-serif;"></table>
+  </div>
+
   <script>
-    function downloadCSV() {
-      // Tiers data
+    // --- DATA ---
       const tiers = [
-        { name: "Base", docs: "5,000", transcription: "Standard", ragIntegration: false, apis: 0, price: 150 },
-        { name: "Plus", docs: "10,000", transcription: "Standard", ragIntegration: false, apis: 1, price: 300 },
-        { name: "Platinum", docs: "50,000", transcription: "Advanced", ragIntegration: true, apis: 5, price: 650 },
-        { name: "Diamond", docs: "150,000", transcription: "Advanced", ragIntegration: true, apis: 10, price: 900 }
-      ];
+      { name: "Base", docs: "5,000", transcription: "No RAG, Not Saved", transcriptionLimit: "50 Transcriptions", ragIntegration: false, apis: 0, price: 150, color: "#f3f4f6", cost: 25 },
+      { name: "Plus", docs: "10,000", transcription: "No RAG, Saved in History", transcriptionLimit: "300 Transcriptions", ragIntegration: false, apis: 1, price: 300, color: "#eff6ff", cost: 50 },
+      { name: "Platinum", docs: "50,000", transcription: "RAG + History Saved", transcriptionLimit: "1,000 Transcriptions", ragIntegration: true, apis: 5, price: 650, color: "#faf5ff", cost: 250 },
+      { name: "Diamond", docs: "150,000", transcription: "RAG + History Saved", transcriptionLimit: "Custom Limit", ragIntegration: true, apis: 10, price: 900, color: "#eef2ff", cost: 750 }
+    ];
 
-      // Logic data
-      const logicData = [
-        { component: "Base Platform", base: 150, plus: 150, plat: 150, dia: 150 },
-        { component: "Storage Surcharge", base: 0, plus: 50, plat: 150, dia: 300 },
-        { component: "API Surcharge", base: 0, plus: 50, plat: 250, dia: 450 },
-        { component: "Ingestion/RAG", base: 0, plus: 0, plat: 100, dia: 100 },
-        { component: "Calculated Total", base: 150, plus: 250, plat: 650, dia: 1000 },
-        { component: "Final List Price", base: 150, plus: 300, plat: 650, dia: 900 }
-      ];
+    const ragStorageData = [
+      { docs: "1,000", gb: "1 GB", cost: "$60", price: "$72" },
+      { docs: "5,000", gb: "5 GB", cost: "$300", price: "$360" },
+      { docs: "10,000", gb: "10 GB", cost: "$600", price: "$720" },
+      { docs: "25,000", gb: "25 GB", cost: "$1,500", price: "$1,800" },
+      { docs: "50,000", gb: "50 GB", cost: "$3,000", price: "$3,600" },
+      { docs: "100,000", gb: "100 GB", cost: "$6,000", price: "$7,200" },
+      { docs: "250,000", gb: "250 GB", cost: "$15,000", price: "$18,000" },
+      { docs: "500,000", gb: "500 GB", cost: "$30,000", price: "$36,000" },
+    ];
 
-      // Construct CSV content
+    const transcriptionData = [
+      { calls: "1", cost: "$0.32", price: "$0.38", profit: "$0.06" },
+      { calls: "1,000", cost: "$320", price: "$380", profit: "$60" },
+      { calls: "10,000", cost: "$3,200", price: "$3,800", profit: "$600" },
+      { calls: "50,000", cost: "$16,000", price: "$19,000", profit: "$3,000" },
+      { calls: "100,000", cost: "$32,000", price: "$38,000", profit: "$6,000" },
+      { calls: "250,000", cost: "$80,000", price: "$95,000", profit: "$15,000" },
+      { calls: "500,000", cost: "$160,000", price: "$190,000", profit: "$30,000" },
+    ];
+
+    const userCounts = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100];
+
+    // --- FUNCTIONS ---
+    function calculateMargin(users, tierPrice, fixedCost) {
+      const revenue = users * tierPrice;
+      const cost = fixedCost;
+      const profit = revenue - cost;
+      const margin = (profit / revenue) * 100;
+      return {
+        users,
+        revenue: revenue.toLocaleString(),
+        cost: cost.toLocaleString(),
+        profit: profit.toLocaleString(),
+        margin: margin.toFixed(1) + "%"
+      };
+    }
+
+    // Populate RAG Storage Table
+    function populateRagTable() {
+      const tbody = document.getElementById('ragStorageTable');
+      ragStorageData.forEach(row => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${row.docs}</td>
+            <td class="text-muted">${row.gb}</td>
+            <td class="text-right text-muted">${row.cost}</td>
+            <td class="text-right text-blue">${row.price}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Populate Transcription Table
+    function populateTranscriptionTable() {
+      const tbody = document.getElementById('transcriptionTable');
+      transcriptionData.forEach(row => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${row.calls}</td>
+            <td class="text-right text-muted">${row.cost}</td>
+            <td class="text-right">${row.price}</td>
+            <td class="text-right text-green">${row.profit}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Populate Margin Table (Base only for preview)
+    function populateMarginTable() {
+      const tbody = document.getElementById('marginTable');
+      userCounts.slice(0, 8).forEach(users => {
+        const data = calculateMargin(users, 150, 25);
+        tbody.innerHTML += `
+          <tr>
+            <td>${data.users}</td>
+            <td class="text-right">$${data.revenue}</td>
+            <td class="text-right text-red">-$${data.cost}</td>
+            <td class="text-right">$${data.profit}</td>
+            <td class="text-right text-bold-green">${data.margin}</td>
+          </tr>
+        `;
+      });
+    }
+
+    // Build Hidden Table for Clipboard
+    function buildHiddenTable() {
+      const table = document.getElementById('hiddenTable');
+      let html = '';
+
+      // Section 1: Main Tiers
+      html += `
+        <thead>
+          <tr>
+            <th style="background-color: #111827; color: white; padding: 10px; font-weight: bold; border: 1px solid #ddd; font-size: 16px;">FEATURE</th>
+            ${tiers.map(t => `<th style="background-color: ${t.color}; padding: 10px; font-weight: bold; text-align: center; border: 1px solid #ddd; font-size: 16px; color: #000;">${t.name.toUpperCase()}</th>`).join('')}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Price Per User</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd; font-weight: bold;">$${t.price}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">RAG Knowledge Storage</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.docs} Docs</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Deep AI Source Search</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">Included</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Transcription Type</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.transcription}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Transcription Limit</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.transcriptionLimit}</td>`).join('')}
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">Custom APIs</td>
+            ${tiers.map(t => `<td style="background-color: ${t.color}; padding: 8px; text-align: center; border: 1px solid #ddd;">${t.apis}</td>`).join('')}
+          </tr>
+      `;
+
+      // Spacer
+      html += `<tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>`;
+
+      // Section 2: RAG Storage
+      html += `
+        <tr>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">EXTRA RAG STORAGE</td>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">GB Size</td>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">Your Cost</td>
+          <td style="background-color: #1e40af; color: white; font-weight: bold; padding: 10px;">Client Price (20%)</td>
+          <td></td>
+        </tr>
+      `;
+      ragStorageData.forEach(row => {
+        html += `
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.docs} Docs</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.gb}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.cost}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${row.price}</td>
+            <td></td>
+          </tr>
+        `;
+      });
+
+      // Spacer
+      html += `<tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>`;
+
+      // Section 3: Transcription
+      html += `
+        <tr>
+          <td style="background-color: #166534; color: white; font-weight: bold; padding: 10px;">TRANSCRIPTION</td>
+          <td style="background-color: #166534; color: white; font-weight: bold; padding: 10px;">Your Cost</td>
+          <td style="background-color: #166534; color: white; font-weight: bold; padding: 10px;">Your Price</td>
+          <td style="background-color: #166534; color: white; font-weight: bold; padding: 10px;">Profit</td>
+          <td></td>
+        </tr>
+      `;
+      transcriptionData.forEach(row => {
+        html += `
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.calls} Calls</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.cost}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">${row.price}</td>
+            <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold;">${row.profit}</td>
+            <td></td>
+          </tr>
+        `;
+      });
+
+      // Spacer
+      html += `<tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr>`;
+
+      // Section 4: Margin Analysis for each tier
+      tiers.forEach(tier => {
+        html += `
+          <tr>
+            <td style="background-color: #4b5563; color: white; font-weight: bold; padding: 10px; font-size: 14px;">${tier.name.toUpperCase()} MARGIN ANALYSIS</td>
+            <td style="background-color: #f3f4f6; font-weight: bold; padding: 10px;">Revenue ($${tier.price})</td>
+            <td style="background-color: #f3f4f6; font-weight: bold; padding: 10px;">Fixed Cost ($${tier.cost})</td>
+            <td style="background-color: #f3f4f6; font-weight: bold; padding: 10px;">Profit</td>
+            <td style="background-color: #f3f4f6; font-weight: bold; padding: 10px;">Margin %</td>
+          </tr>
+        `;
+        userCounts.forEach(u => {
+          const d = calculateMargin(u, tier.price, tier.cost);
+          html += `
+            <tr>
+              <td style="border: 1px solid #ddd; padding: 5px;">${d.users} Users</td>
+              <td style="border: 1px solid #ddd; padding: 5px;">$${d.revenue}</td>
+              <td style="border: 1px solid #ddd; padding: 5px;">$${d.cost}</td>
+              <td style="border: 1px solid #ddd; padding: 5px;">$${d.profit}</td>
+              <td style="border: 1px solid #ddd; padding: 5px; font-weight: bold; color: #166534;">${d.margin}</td>
+            </tr>
+          `;
+        });
+        html += `<tr><td></td><td></td><td></td><td></td><td></td></tr>`;
+      });
+
+      html += '</tbody>';
+      table.innerHTML = html;
+    }
+
+    // Copy to clipboard
+    function handleCopy() {
+      const table = document.getElementById('hiddenTable');
+      const range = document.createRange();
+      const selection = window.getSelection();
+      range.selectNode(table);
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      try {
+        document.execCommand('copy');
+        const btn = document.getElementById('copyBtn');
+        const text = document.getElementById('copyText');
+        btn.classList.add('copied');
+        text.textContent = 'Copied! Paste in Sheets (A1)';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          text.textContent = 'Copy for Google Sheets';
+        }, 3000);
+      } catch (err) {
+        alert('Error copying to clipboard');
+      }
+
+      selection.removeAllRanges();
+    }
+
+    // Download CSV
+    function handleDownload() {
       let csvContent = "data:text/csv;charset=utf-8,";
-      
-      // Part 1: Main Tier List
       csvContent += "FENORI ENTERPRISE - TIER OVERVIEW\n";
-      csvContent += "Tier Name,Documents Included,Deep AI Search,Content Generation,Transcription System,RAG Integration,Custom APIs,Price Per User\n";
+      csvContent += "Tier Name,Documents,Search,Generation,Transcription Type,Limit,RAG Integration,APIs,Price\n";
       
       tiers.forEach(tier => {
         const row = [
@@ -552,6 +844,7 @@
           "Yes",
           "Yes",
           tier.transcription,
+          tier.transcriptionLimit,
           tier.ragIntegration ? "Yes" : "No",
           tier.apis,
           `$${tier.price}`
@@ -559,35 +852,22 @@
         csvContent += row.join(",") + "\n";
       });
 
-      csvContent += "\n\n";
-
-      // Part 2: Pricing Logic Breakdown
-      csvContent += "PRICING LOGIC BREAKDOWN (COMPONENT MATH)\n";
-      csvContent += "Cost Component,Base,Plus,Platinum,Diamond\n";
-      logicData.forEach(item => {
-        const row = [
-          item.component,
-          item.base,
-          item.plus,
-          item.plat,
-          item.dia
-        ];
-        csvContent += row.join(",") + "\n";
-      });
-
-      // Part 3: Reference Tables
-      csvContent += "\n\nREFERENCE: STORAGE COSTS\nTier,Docs,Cost\nSmall,+10k,50\nMedium,+50k,150\nLarge,+150k,300\n";
-      csvContent += "\nREFERENCE: API COSTS\nCount,Cost\n1 API,50\n5 APIs,250\n10 APIs,450\n";
-
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "Fenori_Enterprise_Pricing.csv");
+      link.setAttribute("download", "Fenori_Pricing_Overview.csv");
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      populateRagTable();
+      populateTranscriptionTable();
+      populateMarginTable();
+      buildHiddenTable();
+    });
   </script>
 </body>
 </html>
-
