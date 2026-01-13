@@ -21,7 +21,43 @@
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       min-height: 100vh;
       color: #111827;
-      padding: 40px 20px;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Navigation Header */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(255, 255, 255, 0.85);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+      padding: 16px 0;
+      margin-bottom: 40px;
+    }
+
+    .nav-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-logo {
+      height: 42px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .brand-logo:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
     }
 
     .container {
@@ -29,8 +65,9 @@
       margin: 0 auto;
       background: #ffffff;
       padding: 48px;
-      border-radius: 20px;
-      box-shadow: 0 25px 80px rgba(15, 23, 42, 0.12), 0 4px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      margin-top: 0;
     }
 
     /* Header */
@@ -84,19 +121,20 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      box-shadow: 0 4px 14px rgba(102, 126, 234, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5), 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .btn-primary.copied {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .btn-secondary {
@@ -336,6 +374,15 @@
         font-size: 1.5rem;
       }
 
+      .nav-header {
+        margin-bottom: 24px;
+      }
+
+      .container {
+        padding: 24px 16px;
+        border-radius: 16px;
+      }
+
       table {
         font-size: 0.8rem;
       }
@@ -351,6 +398,15 @@
   </style>
 </head>
 <body>
+  <!-- Navigation Header -->
+  <nav class="nav-header">
+    <div class="nav-header-inner">
+      <a href="index.html">
+        <img src="images/fenori-io.svg" alt="Fenori" class="brand-logo" />
+      </a>
+    </div>
+  </nav>
+
   <div class="container">
     <!-- Header -->
     <div class="header">
